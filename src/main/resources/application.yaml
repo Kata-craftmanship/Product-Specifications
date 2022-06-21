@@ -1,0 +1,9 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: Specification
+  output:
+    ansi:
+      enabled: ALWAYS
