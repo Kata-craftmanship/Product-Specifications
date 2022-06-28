@@ -1,6 +1,7 @@
 package com.soprasteria.insee.specification.service;
 
 import com.soprasteria.insee.specification.model.Color;
+import com.soprasteria.insee.specification.model.Price;
 import com.soprasteria.insee.specification.model.Product;
 import com.soprasteria.insee.specification.model.Size;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,8 @@ import java.util.function.Predicate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProductFilterTest {
-    Product p1 = new Product("p1",Color.BLUE, Size.LARGE);
-    Product p2 = new Product("p2",Color.GREEN,Size.MEDIUM);
+    Product p1 = new Product("p1",Color.BLUE, Size.LARGE, new Price(10d));
+    Product p2 = new Product("p2",Color.GREEN,Size.MEDIUM,new Price(40d));
     List<Product> lp = List.of(p1,p2);
 
     @Test
@@ -65,6 +66,11 @@ public class ProductFilterTest {
     @Test
     public void filterByNameTotoTestPredicate() {
         assertThat(ProductFilter.filterBy(lp,new NamePredicate("toto"))).isEmpty();
+    }
+
+    @Test
+    public void filterByPriceLowerThan30(){
+        assertThat(ProductFilter.filterBy(lp,new PricePredicate(new Price(30d)).negate())).hasSize(1).isEqualTo(List.of(p1));
     }
 
 }
