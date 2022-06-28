@@ -1,4 +1,4 @@
-package com.soprasteria.insee.specification.service;
+package com.soprasteria.insee.specification.model;
 
 public class Product {
 

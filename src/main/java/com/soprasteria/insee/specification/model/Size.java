@@ -1,4 +1,4 @@
-package com.soprasteria.insee.specification.service;
+package com.soprasteria.insee.specification.model;
 
 public enum Size {
    SMALL,

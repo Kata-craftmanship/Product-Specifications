@@ -1,5 +1,9 @@
 package com.soprasteria.insee.specification.service;
 
+import com.soprasteria.insee.specification.model.Color;
+import com.soprasteria.insee.specification.model.Product;
+import com.soprasteria.insee.specification.model.Size;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
