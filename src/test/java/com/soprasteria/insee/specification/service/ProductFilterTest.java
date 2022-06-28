@@ -44,4 +44,27 @@ public class ProductFilterTest {
         assertThat(ProductFilter.filterBy(lp, predicate)).hasSize(1);
     }
 
+    @Test
+    public void filterByColorREDOrSizeMEDIUM() {
+        Predicate<Product> medium = product -> product.getSize() == Size.MEDIUM;
+        Predicate<Product> red = product -> product.getColor() == Color.RED;
+        assertThat(ProductFilter.filterBy(lp, medium.or(red))).hasSize(1);
+    }
+
+    @Test
+    public void filterByAllColorButRED() {
+        Predicate<Product> red = product -> product.getColor() == Color.RED;
+        assertThat(ProductFilter.filterBy(lp, red.negate())).hasSize(2);
+    }
+
+    @Test
+    public void filterByColorRedTestPredicate() {
+        assertThat(ProductFilter.filterBy(lp,new ColorPredicate(Color.RED))).isEmpty();
+    }
+
+    @Test
+    public void filterByNameTotoTestPredicate() {
+        assertThat(ProductFilter.filterBy(lp,new NamePredicate("toto"))).isEmpty();
+    }
+
 }

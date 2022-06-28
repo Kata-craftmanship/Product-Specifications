@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ProductFilter {
-
    public static List<Product> filterBy(List<Product> products, Predicate<Product> predicate){
       return products.stream()
               .filter(predicate)

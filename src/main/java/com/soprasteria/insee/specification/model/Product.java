@@ -1,15 +1,15 @@
 package com.soprasteria.insee.specification.model;
 
+import java.util.Objects;
+
 public class Product {
 
-   private String name;
-   private Color color;
-   private Size size;
-
-   public Product() {
-   }
+   private final String name;
+   private final Color color;
+   private final Size size;
 
    public Product(String name, Color color, Size size) {
+      Objects.requireNonNull(name,"Name can't be null");
       this.name = name;
       this.color = color;
       this.size = size;
@@ -19,18 +19,12 @@ public class Product {
       return color;
    }
 
-   public void setColor(Color color) {
-      this.color = color;
+   public String getName() {
+      return name;
    }
-
    public Size getSize() {
       return size;
    }
-
-   public void setSize(Size size) {
-      this.size = size;
-   }
-
    @Override
    public String toString() {
       return "Product{" +
