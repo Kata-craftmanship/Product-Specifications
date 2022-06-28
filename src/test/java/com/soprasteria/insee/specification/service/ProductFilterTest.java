@@ -6,6 +6,7 @@ import com.soprasteria.insee.specification.model.Size;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,19 +17,31 @@ public class ProductFilterTest {
 
     @Test
     public void filterByColorBlueTest() {
-        assertThat(ProductFilter.filterByColor(lp,Color.BLUE)).hasSize(1).isEqualTo(List.of(p1));
+        Predicate<Product> predicate = product -> product.getColor() == Color.BLUE;
+        assertThat(ProductFilter.filterBy(lp,predicate)).hasSize(1).isEqualTo(List.of(p1));
     }
 
     @Test
     public void filterByColorGreenTest() {
-        assertThat(ProductFilter.filterByColor(lp,Color.GREEN)).hasSize(1).isEqualTo(List.of(p2));
+        Predicate<Product> predicate = product -> product.getColor() == Color.GREEN;
+        assertThat(ProductFilter.filterBy(lp,predicate)).hasSize(1).isEqualTo(List.of(p2));
     }
 
     @Test
     public void filterByColorRedTest() {
-        assertThat(ProductFilter.filterByColor(lp,Color.RED)).isEmpty();
+        Predicate<Product> predicate = product -> product.getColor() == Color.RED;
+        assertThat(ProductFilter.filterBy(lp,predicate)).isEmpty();
+    }
+    @Test
+    public void filterBySizeLargeTest() {
+        Predicate<Product> predicate = product -> product.getSize() == Size.LARGE;
+        assertThat(ProductFilter.filterBy(lp, predicate)).hasSize(1).isEqualTo(List.of(p1));
     }
 
-
+    @Test
+    public void filterBySizeMedium() {
+        Predicate<Product> predicate = product -> product.getSize() == Size.MEDIUM;
+        assertThat(ProductFilter.filterBy(lp, predicate)).hasSize(1);
+    }
 
 }
